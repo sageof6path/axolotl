@@ -2,7 +2,7 @@ base_model: google/gemma-3-1b-it
 
 # gemma3 specific ddp/memory handling
 ddp_find_unused_parameters: true
-experimental_skip_move_to_device: true 
+experimental_skip_move_to_device: true
 
 # Optimization Plugins
 plugins:
@@ -23,7 +23,7 @@ datasets:
   - path: databricks/databricks-dolly-15k
     type: chat_template
     chat_template: gemma3
-    field_messages: messages 
+    field_messages: messages
 
 # --- THE CORE ISSUE SETTINGS ---
 sequence_len: 8192
