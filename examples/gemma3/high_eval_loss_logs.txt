@@ -1,0 +1,409 @@
+============================================================CMD====================================================================================================
+
+docker run --shm-size 128gb --gpus '"all"' --env=HF_TOKEN=<TOKEN> --volume="$(pwd)":"$(pwd)" --rm -it axolotlai/axolotl:main-latest accelerate launch -m axolotl.cli.train "$(pwd)/dolly-config.yaml"
+
+============================================================OUTPUT=================================================================================================
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.8.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `8`
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+[2026-03-06 10:16:31,795] [WARNING] [torchao] Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[2026-03-06 10:16:31,971] [WARNING] [torchao] Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[2026-03-06 10:16:32,044] [WARNING] [torchao] Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[2026-03-06 10:16:32,077] [WARNING] [torchao] Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[2026-03-06 10:16:32,080] [WARNING] [torchao] Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[2026-03-06 10:16:32,081] [WARNING] [torchao] Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[2026-03-06 10:16:32,082] [WARNING] [torchao] Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[2026-03-06 10:16:32,083] [WARNING] [torchao] Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[2026-03-06 10:16:34,102] [INFO] [axolotl.integrations.base] Attempting to load plugin: axolotl.integrations.cut_cross_entropy.CutCrossEntropyPlugin
+[2026-03-06 10:16:34,903] [INFO] [axolotl.integrations.base] Plugin loaded successfully: axolotl.integrations.cut_cross_entropy.CutCrossEntropyPlugin
+[2026-03-06 10:16:34,903] [INFO] [axolotl.integrations.base] Attempting to load plugin: axolotl.integrations.liger.LigerPlugin
+[2026-03-06 10:16:34,967] [INFO] [axolotl.integrations.base] Plugin loaded successfully: axolotl.integrations.liger.LigerPlugin
+[2026-03-06 10:16:35,015] [INFO] [axolotl.utils.schemas.validation] setting `remove_unused_columns: false` for when sample_packing and eval_sample_packing don't match
+[2026-03-06 10:16:35,015] [INFO] [axolotl.utils.schemas.validation] Setting `pad_to_sequence_len: true` to prevent memory leaks when sample_packing
+config.json: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 899/899 [00:00<00:00, 4.08MB/s]
+[2026-03-06 10:16:35,742] [INFO] [axolotl.cli.config] config:
+{
+  "activation_offloading": true,
+  "axolotl_config_path": "/home/nitingovilkar_google_com/dolly-config.yaml",
+  "base_model": "google/gemma-3-1b-it",
+  "base_model_config": "google/gemma-3-1b-it",
+  "batch_size": 16,
+  "bf16": true,
+  "capabilities": {
+    "bf16": true,
+    "compute_capability": "sm_90",
+    "fp8": true,
+    "n_gpu": 8,
+    "n_node": 1
+  },
+  "chat_template": "gemma3",
+  "context_parallel_size": 1,
+  "cut_cross_entropy": true,
+  "dataloader_num_workers": 8,
+  "dataloader_pin_memory": true,
+  "dataloader_prefetch_factor": 256,
+  "dataset_num_proc": 208,
+  "dataset_prepared_path": "last_run_prepared",
+  "datasets": [
+    {
+      "chat_template": "gemma3",
+      "field_messages": "messages",
+      "message_property_mappings": {
+        "content": "content",
+        "role": "role"
+      },
+      "path": "philschmid/dolly-15k-oai-style",
+      "split": "train[:90%]",
+      "trust_remote_code": false,
+      "type": "chat_template"
+    }
+  ],
+  "ddp": true,
+  "ddp_find_unused_parameters": true,
+  "device": "cuda:0",
+  "device_map": {
+    "": 0
+  },
+  "dion_rank_fraction": 1.0,
+  "dion_rank_multiple_of": 1,
+  "eaft_alpha": 1.0,
+  "eaft_k": 20,
+  "env_capabilities": {
+    "torch_version": "2.9.1"
+  },
+  "eot_tokens": [
+    "<end_of_turn>"
+  ],
+  "eval_batch_size": 2,
+  "eval_causal_lm_metrics": [
+    "sacrebleu",
+    "comet",
+    "ter",
+    "chrf"
+  ],
+  "eval_max_new_tokens": 128,
+  "eval_sample_packing": false,
+  "eval_steps": 0.08333333333333333,
+  "eval_table_size": 0,
+  "evals_per_epoch": 4,
+  "experimental_skip_move_to_device": true,
+  "flash_attention": true,
+  "fp16": false,
+  "generate_samples": false,
+  "generation_do_sample": true,
+  "generation_max_new_tokens": 50,
+  "generation_prompt_ratio": 0.5,
+  "generation_temperature": 0.7,
+  "gradient_accumulation_steps": 1,
+  "gradient_checkpointing": true,
+  "gradient_checkpointing_kwargs": {
+    "use_reentrant": true
+  },
+  "include_tkps": true,
+  "include_tokens_per_second": true,
+  "learning_rate": 0.0002,
+  "liger_fused_linear_cross_entropy": true,
+  "liger_glu_activation": true,
+  "liger_layer_norm": true,
+  "liger_rms_norm": true,
+  "liger_rope": true,
+  "lisa_layers_attribute": "model.layers",
+  "load_best_model_at_end": false,
+  "load_in_4bit": false,
+  "load_in_8bit": false,
+  "local_rank": 0,
+  "logging_steps": 1,
+  "lora_dropout": 0.0,
+  "loraplus_lr_embedding": 1e-06,
+  "lr_scheduler": "cosine",
+  "mean_resizing_embeddings": false,
+  "micro_batch_size": 2,
+  "model_config_type": "gemma3_text",
+  "num_epochs": 3.0,
+  "num_generation_samples": 3,
+  "optimizer": "adamw_torch_fused",
+  "otel_metrics_host": "localhost",
+  "otel_metrics_port": 8000,
+  "output_dir": "output",
+  "pad_to_sequence_len": true,
+  "plugins": [
+    "axolotl.integrations.cut_cross_entropy.CutCrossEntropyPlugin",
+    "axolotl.integrations.liger.LigerPlugin"
+  ],
+  "pretrain_multipack_attn": true,
+  "profiler_steps_start": 0,
+  "qlora_sharded_model_loading": false,
+  "quantize_moe_experts": false,
+  "ray_num_workers": 1,
+  "remove_unused_columns": false,
+  "resources_per_worker": {
+    "GPU": 1
+  },
+  "sample_packing": true,
+  "sample_packing_bin_size": 200,
+  "sample_packing_group_size": 100000,
+  "save_only_model": false,
+  "save_safetensors": true,
+  "save_strategy": "no",
+  "sequence_len": 8192,
+  "shuffle_before_merging_datasets": false,
+  "shuffle_merged_datasets": true,
+  "skip_prepare_dataset": false,
+  "streaming_multipack_buffer_size": 10000,
+  "strict": false,
+  "tensor_parallel_size": 1,
+  "test_datasets": [
+    {
+      "chat_template": "gemma3",
+      "field_messages": "messages",
+      "message_property_mappings": {
+        "content": "content",
+        "role": "role"
+      },
+      "path": "philschmid/dolly-15k-oai-style",
+      "split": "train[90%:]",
+      "trust_remote_code": false,
+      "type": "chat_template"
+    }
+  ],
+  "tf32": true,
+  "tiled_mlp_use_original_mlp": true,
+  "tokenizer_config": "google/gemma-3-1b-it",
+  "tokenizer_save_jinja_files": true,
+  "torch_dtype": "torch.bfloat16",
+  "train_on_inputs": false,
+  "trl": {
+    "log_completions": false,
+    "mask_truncated_completions": false,
+    "ref_model_mixup_alpha": 0.9,
+    "ref_model_sync_steps": 64,
+    "scale_rewards": true,
+    "sync_ref_model": false,
+    "use_vllm": false,
+    "vllm_server_host": "0.0.0.0",
+    "vllm_server_port": 8000
+  },
+  "use_kernels": true,
+  "use_otel_metrics": false,
+  "use_ray": false,
+  "use_tensorboard": true,
+  "val_set_size": 0.0,
+  "vllm": {
+    "device": "auto",
+    "dtype": "auto",
+    "gpu_memory_utilization": 0.9,
+    "host": "0.0.0.0",
+    "port": 8000
+  },
+  "weight_decay": 0.0,
+  "world_size": 8
+}
+tokenizer_config.json: 1.16MB [00:00, 11.6MB/s]
+tokenizer.json: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 33.4M/33.4M [00:00<00:00, 59.9MB/s]
+added_tokens.json: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 35.0/35.0 [00:00<00:00, 258kB/s]
+special_tokens_map.json: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 662/662 [00:00<00:00, 5.24MB/s]
+[2026-03-06 10:16:41,269] [INFO] [axolotl.utils.data.sft] [RANK:3] Loading raw datasets...
+Fetching 0 files: 0it [00:00, ?it/s].00B [00:00, ?B/s]
+README.md: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 523/523 [00:00<00:00, 2.91MB/s]
+Download complete: : 0.00B [00:00, ?B/s]                                                                                                                                                                                                             | 0.00/523 [00:00<?, ?B/s]
+data/train-00000-of-00001-54e3756291ca09(…): 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 7.24M/7.24M [00:00<00:00, 10.6MB/s]
+Generating train split: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 15011/15011 [00:00<00:00, 478370.23 examples/s]
+[2026-03-06 10:16:44,219] [INFO] [axolotl.utils.data.wrappers] [RANK:3] Loading dataset: philschmid/dolly-15k-oai-style with base_type: chat_template and prompt_style: None
+Tokenizing Prompts (num_proc=208): 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 13510/13510 [09:55<00:00, 22.70 examples/s]
+Dropping Invalid Sequences (<None or >8192) (num_proc=208): 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 13510/13510 [00:04<00:00, 3012.80 examples/s]
+Drop Samples with Zero Trainable Tokens (num_proc=208): 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 13509/13509 [00:05<00:00, 2290.67 examples/s]
+Add position_id column (Sample Packing) (num_proc=208): 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 13509/13509 [00:04<00:00, 2958.60 examples/s]
+Saving the dataset (52/52 shards): 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 13509/13509 [00:00<00:00, 18513.16 examples/s]
+[2026-03-06 10:27:06,711] [INFO] [axolotl.utils.data.sft] [RANK:3] Loading raw datasets...
+Fetching 0 files: 0it [00:00, ?it/s].00B [00:00, ?B/s]
+Download complete: : 0.00B [00:00, ?B/s]              [2026-03-06 10:27:08,382] [INFO] [axolotl.utils.data.wrappers] [RANK:3] Loading dataset: philschmid/dolly-15k-oai-style with base_type: chat_template and prompt_style: None
+Download complete: : 0.00B [00:01, ?B/s]
+Tokenizing Prompts (num_proc=208): 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1501/1501 [09:56<00:00,  2.52 examples/s]
+Dropping Invalid Sequences (<None or >8192) (num_proc=208): 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1501/1501 [00:04<00:00, 362.68 examples/s]
+Drop Samples with Zero Trainable Tokens (num_proc=208): 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1501/1501 [00:05<00:00, 255.92 examples/s]
+Add position_id column (Sample Packing) (num_proc=208): 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1501/1501 [00:04<00:00, 350.62 examples/s]
+Saving the dataset (5/5 shards): 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1501/1501 [00:00<00:00, 7401.61 examples/s]
+Loading dataset from disk: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 52/52 [00:00<00:00, 106704.41it/s]
+Loading dataset from disk: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 52/52 [00:00<00:00, 177032.31it/s]
+Loading dataset from disk: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 52/52 [00:00<00:00, 195083.91it/s]
+Loading dataset from disk: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 52/52 [00:00<00:00, 55021.14it/s]
+[2026-03-06 10:37:31,653] [INFO] [axolotl.utils.data.shared] Loading prepared dataset from disk at last_run_prepared/496da2663c338baaf3a01d3191a0f938...
+Loading dataset from disk: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 52/52 [00:00<00:00, 205758.31it/s]
+[2026-03-06 10:37:31,675] [INFO] [axolotl.utils.data.shared] Loading prepared dataset from disk at last_run_prepared/6124809a55f18de8ece061eeeefa04eb...
+Loading dataset from disk: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 52/52 [00:00<00:00, 156122.98it/s]
+Loading dataset from disk: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 52/52 [00:00<00:00, 40996.96it/s]
+[2026-03-06 10:37:38,075] [INFO] [axolotl.utils.samplers.multipack] gather_len_batches: [153, 153, 153, 153, 153, 153, 153, 153]
+[2026-03-06 10:37:38,077] [WARNING] [py.warnings] /root/miniconda3/envs/py3.11/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4876: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  warnings.warn(  # warn only once
+
+[2026-03-06 10:37:38,781] [INFO] [axolotl.utils.trainer] sample_packing_eff_est across ranks: [0.9995464086532593, 0.9995464086532593, 0.9995464086532593, 0.9995464086532593, 0.9995464086532593, 0.9995464086532593, 0.9995464086532593, 0.9995464086532593]
+[2026-03-06 10:37:38,783] [INFO] [axolotl.utils.data.sft] Maximum number of steps set at 57
+[2026-03-06 10:37:41,751] [INFO] [axolotl.loaders.patch_manager] Applying multipack dataloader patch for sample packing...
+[2026-03-06 10:37:41,783] [INFO] [axolotl.integrations.cut_cross_entropy] Applying Cut Cross Entropy to model type: gemma3_text
+model.safetensors:   0%|                                                                                                                                                                                                                           | 0.00/2.00G [00:00<?, ?B/s][2026-03-06 10:37:41,863] [INFO] [axolotl.integrations.liger.plugin] Applying LIGER to gemma3_text with kwargs: {'rope': True, 'cross_entropy': None, 'fused_linear_cross_entropy': True, 'rms_norm': True, 'geglu': True}
+model.safetensors: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2.00G/2.00G [00:02<00:00, 779MB/s]
+The following generation flags are not valid and may be ignored: ['cache_implementation']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['cache_implementation']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['cache_implementation']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['cache_implementation']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['cache_implementation']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['cache_implementation']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['cache_implementation']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['cache_implementation']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 340/340 [00:00<00:00, 969.40it/s, Materializing param=model.norm.weight]
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 340/340 [00:00<00:00, 972.18it/s, Materializing param=model.norm.weight]
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 340/340 [00:00<00:00, 964.68it/s, Materializing param=model.norm.weight]
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 340/340 [00:00<00:00, 939.55it/s, Materializing param=model.norm.weight]
+Loading weights:  98%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████   | 333/340 [00:00<00:00, 357.10it/s, Materializing param=model.layers.25.pre_feedforward_layernorm.weight]
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 340/340 [00:00<00:00, 425.65it/s, Materializing param=model.norm.weight]
+Loading weights:  99%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████ | 338/340 [00:00<00:00, 354.79it/s, Materializing param=model.layers.25.self_attn.q_proj.weight]
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 340/340 [00:00<00:00, 429.60it/s, Materializing param=model.norm.weight]
+Fetching 5 files: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00,  6.15it/s]
+Fetching 5 files: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 11.27it/s]
+Fetching 5 files: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 11.23it/s]
+Fetching 5 files: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 11.11it/s]
+generation_config.json: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 215/215 [00:00<00:00, 1.63MB/s]
+Download complete: : 11.9MB [00:00, 13.0MB/s]                                                                                                                                                                                                        | 0.00/215 [00:00<?, ?B/s]
+Download complete: : 0.00B [00:00, ?B/s]
+Download complete: : 0.00B [00:00, ?B/s]
+Fetching 5 files: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 11.24it/s]
+Download complete: : 0.00B [00:00, ?B/s]              ███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                           | 4/5 [00:00<00:00,  8.97it/s]
+Fetching 5 files: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 11.17it/s]
+Download complete: : 0.00B [00:00, ?B/s]              ███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                           | 4/5 [00:00<00:00,  8.69it/s]
+[2026-03-06 10:37:45,934] [INFO] [axolotl.loaders.model] Converting modules to torch.bfloat16
+Download complete: : 0.00B [00:00, ?B/s]
+Fetching 5 files: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 11.28it/s]
+Fetching 5 files: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 11.09it/s]
+Download complete: : 0.00B [00:00, ?B/s]              ███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 10.38it/s]
+Download complete: : 0.00B [00:00, ?B/s]
+df: /root/.triton/autotune: No such file or directory
+[2026-03-06 10:37:47,826] [INFO] [axolotl.train] Pre-saving tokenizer to output...
+[2026-03-06 10:37:48,126] [INFO] [axolotl.train] Pre-saving model config to output...
+[2026-03-06 10:37:48,128] [INFO] [axolotl.train] Starting trainer...
+[2026-03-06 10:37:50,296] [INFO] [axolotl.utils.samplers.multipack] gather_len_batches: [153, 153, 153, 153, 153, 153, 153, 153]
+[2026-03-06 10:37:50,296] [WARNING] [py.warnings] /root/miniconda3/envs/py3.11/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4876: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  warnings.warn(  # warn only once
+
+  0%|                                                                                                                                                                                                                                                   | 0/57 [00:00<?, ?it/s][2026-03-06 10:37:50,405] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '13.4', 'eval_runtime': '93.05', 'eval_samples_per_second': '16.13', 'eval_steps_per_second': '1.01', 'eval_ppl': '6.592e+05', 'memory/max_active (GiB)': '43.84', 'memory/max_allocated (GiB)': '43.84', 'memory/device_reserved (GiB)': '45.04', 'epoch': 0, 'num_input_tokens_seen': 0}                                                                                                                                                                                                                                                      
+  0%|                                                                                                                                                                                                                                                   | 0/57 [01:33<?, ?it/s[2026-03-06 10:39:23,777] [WARNING] [liger_kernel.transformers.model.gemma3] It is strongly recommended to train Gemma3 models with the `eager` attention implementation instead of `flash_attention_2`. Use `eager` with `AutoModelForCausalLM.from_pretrained('<path-to-checkpoint>', attn_implementation='eager')`.
+[2026-03-06 10:39:23,777] [WARNING] [liger_kernel.transformers.model.gemma3] It is strongly recommended to train Gemma3 models with the `eager` attention implementation instead of `flash_attention_2`. Use `eager` with `AutoModelForCausalLM.from_pretrained('<path-to-checkpoint>', attn_implementation='eager')`.
+[2026-03-06 10:39:23,777] [WARNING] [liger_kernel.transformers.model.gemma3] It is strongly recommended to train Gemma3 models with the `eager` attention implementation instead of `flash_attention_2`. Use `eager` with `AutoModelForCausalLM.from_pretrained('<path-to-checkpoint>', attn_implementation='eager')`.
+[2026-03-06 10:39:23,777] [WARNING] [liger_kernel.transformers.model.gemma3] It is strongly recommended to train Gemma3 models with the `eager` attention implementation instead of `flash_attention_2`. Use `eager` with `AutoModelForCausalLM.from_pretrained('<path-to-checkpoint>', attn_implementation='eager')`.
+[2026-03-06 10:39:23,777] [WARNING] [liger_kernel.transformers.model.gemma3] It is strongly recommended to train Gemma3 models with the `eager` attention implementation instead of `flash_attention_2`. Use `eager` with `AutoModelForCausalLM.from_pretrained('<path-to-checkpoint>', attn_implementation='eager')`.
+[2026-03-06 10:39:23,777] [WARNING] [liger_kernel.transformers.model.gemma3] It is strongly recommended to train Gemma3 models with the `eager` attention implementation instead of `flash_attention_2`. Use `eager` with `AutoModelForCausalLM.from_pretrained('<path-to-checkpoint>', attn_implementation='eager')`.
+[2026-03-06 10:39:23,778] [WARNING] [liger_kernel.transformers.model.gemma3] It is strongly recommended to train Gemma3 models with the `eager` attention implementation instead of `flash_attention_2`. Use `eager` with `AutoModelForCausalLM.from_pretrained('<path-to-checkpoint>', attn_implementation='eager')`.
+[2026-03-06 10:39:23,778] [WARNING] [liger_kernel.transformers.model.gemma3] It is strongly recommended to train Gemma3 models with the `eager` attention implementation instead of `flash_attention_2`. Use `eager` with `AutoModelForCausalLM.from_pretrained('<path-to-checkpoint>', attn_implementation='eager')`.
+[rank1]:[W306 10:39:25.784961538 reducer.cpp:1431] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank0]:[W306 10:39:25.796576412 reducer.cpp:1431] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank2]:[W306 10:39:25.796793764 reducer.cpp:1431] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank7]:[W306 10:39:25.797129531 reducer.cpp:1431] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank6]:[W306 10:39:25.797200908 reducer.cpp:1431] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank4]:[W306 10:39:25.797853190 reducer.cpp:1431] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank5]:[W306 10:39:25.798208417 reducer.cpp:1431] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank3]:[W306 10:39:25.798414517 reducer.cpp:1431] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+{'loss': '4.119', 'grad_norm': '100', 'learning_rate': '0', 'ppl': '61.52', 'memory/max_active (GiB)': '9.51', 'memory/max_allocated (GiB)': '9.51', 'memory/device_reserved (GiB)': '9.71', 'tokens/train_per_sec_per_gpu': '2295', 'tokens/total': 131072, 'tokens/trainable': 56658, 'epoch': '0.05263', 'num_input_tokens_seen': 131072, 'train_runtime': '96.46', 'train_tokens_per_second': '1359'}
+{'loss': '4.102', 'grad_norm': '97.5', 'learning_rate': '0.0001', 'ppl': '60.44', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.41', 'tokens/train_per_sec_per_gpu': '7540', 'tokens/total': 262144, 'tokens/trainable': 112861, 'epoch': '0.1053', 'num_input_tokens_seen': 262144, 'train_runtime': '97.41', 'train_tokens_per_second': '2691'}
+{'loss': '2.975', 'grad_norm': '31.62', 'learning_rate': '0.0002', 'ppl': '19.58', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.41', 'tokens/train_per_sec_per_gpu': '7853', 'tokens/total': 393216, 'tokens/trainable': 168816, 'epoch': '0.1579', 'num_input_tokens_seen': 393216, 'train_runtime': '98.31', 'train_tokens_per_second': '4000'}
+{'loss': '3.396', 'grad_norm': '20.25', 'learning_rate': '0.0001998', 'ppl': '29.83', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.41', 'tokens/train_per_sec_per_gpu': '7519', 'tokens/total': 524288, 'tokens/trainable': 222347, 'epoch': '0.2105', 'num_input_tokens_seen': 524288, 'train_runtime': '99.2', 'train_tokens_per_second': '5285'}
+{'loss': '3.112', 'grad_norm': '19.5', 'learning_rate': '0.0001993', 'ppl': '22.47', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.41', 'tokens/train_per_sec_per_gpu': '8285', 'tokens/total': 655360, 'tokens/trainable': 281285, 'epoch': '0.2632', 'num_input_tokens_seen': 655360, 'train_runtime': '100.1', 'train_tokens_per_second': '6547'}
+  9%|████████████████████▌                                                                                                                                                                                                                      | 5/57 [01:40<07:57,  9.18s/it][2026-03-06 10:39:30,504] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '12.41', 'eval_runtime': '91.78', 'eval_samples_per_second': '16.35', 'eval_steps_per_second': '1.024', 'eval_ppl': '2.464e+05', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.41', 'epoch': '0.2632', 'num_input_tokens_seen': 655360, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                   
+{'loss': '2.751', 'grad_norm': '14.25', 'learning_rate': '0.0001985', 'ppl': '15.67', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7071', 'tokens/total': 786432, 'tokens/trainable': 334513, 'epoch': '0.3158', 'num_input_tokens_seen': 786432, 'train_runtime': '192.9', 'train_tokens_per_second': '4077'}                                                                                                                                          
+{'loss': '2.51', 'grad_norm': '6.094', 'learning_rate': '0.0001974', 'ppl': '12.3', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8126', 'tokens/total': 917504, 'tokens/trainable': 392316, 'epoch': '0.3684', 'num_input_tokens_seen': 917504, 'train_runtime': '193.8', 'train_tokens_per_second': '4735'}
+{'loss': '2.386', 'grad_norm': '3.891', 'learning_rate': '0.0001959', 'ppl': '10.86', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8025', 'tokens/total': 1048576, 'tokens/trainable': 449223, 'epoch': '0.4211', 'num_input_tokens_seen': 1048576, 'train_runtime': '194.7', 'train_tokens_per_second': '5386'}
+{'loss': '2.544', 'grad_norm': '10.06', 'learning_rate': '0.0001942', 'ppl': '12.73', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8840', 'tokens/total': 1179648, 'tokens/trainable': 511950, 'epoch': '0.4737', 'num_input_tokens_seen': 1179648, 'train_runtime': '195.6', 'train_tokens_per_second': '6032'}
+{'loss': '2.405', 'grad_norm': '3.781', 'learning_rate': '0.0001921', 'ppl': '11.07', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7828', 'tokens/total': 1310720, 'tokens/trainable': 567771, 'epoch': '0.5263', 'num_input_tokens_seen': 1310720, 'train_runtime': '196.5', 'train_tokens_per_second': '6671'}
+ 18%|█████████████████████████████████████████                                                                                                                                                                                                 | 10/57 [03:16<06:58,  8.90s/it][2026-03-06 10:41:06,882] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '14.42', 'eval_runtime': '92.4', 'eval_samples_per_second': '16.25', 'eval_steps_per_second': '1.017', 'eval_ppl': '1.838e+06', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '0.5263', 'num_input_tokens_seen': 1310720, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                   
+{'loss': '2.391', 'grad_norm': '3.656', 'learning_rate': '0.0001897', 'ppl': '10.92', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7279', 'tokens/total': 1441792, 'tokens/trainable': 623007, 'epoch': '0.5789', 'num_input_tokens_seen': 1441792, 'train_runtime': '289.9', 'train_tokens_per_second': '4974'}                                                                                                                                        
+{'loss': '2.296', 'grad_norm': '2.719', 'learning_rate': '0.0001871', 'ppl': '9.93', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7516', 'tokens/total': 1572864, 'tokens/trainable': 676356, 'epoch': '0.6316', 'num_input_tokens_seen': 1572864, 'train_runtime': '290.8', 'train_tokens_per_second': '5410'}
+{'loss': '2.364', 'grad_norm': '2.812', 'learning_rate': '0.0001841', 'ppl': '10.63', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7853', 'tokens/total': 1703936, 'tokens/trainable': 732240, 'epoch': '0.6842', 'num_input_tokens_seen': 1703936, 'train_runtime': '291.7', 'train_tokens_per_second': '5842'}
+{'loss': '2.385', 'grad_norm': '2.422', 'learning_rate': '0.0001809', 'ppl': '10.85', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '9118', 'tokens/total': 1835008, 'tokens/trainable': 797599, 'epoch': '0.7368', 'num_input_tokens_seen': 1835008, 'train_runtime': '292.6', 'train_tokens_per_second': '6272'}
+{'loss': '2.222', 'grad_norm': '2.734', 'learning_rate': '0.0001774', 'ppl': '9.229', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7570', 'tokens/total': 1966080, 'tokens/trainable': 851644, 'epoch': '0.7895', 'num_input_tokens_seen': 1966080, 'train_runtime': '293.5', 'train_tokens_per_second': '6700'}
+ 26%|█████████████████████████████████████████████████████████████▌                                                                                                                                                                            | 15/57 [04:53<06:14,  8.91s/it][2026-03-06 10:42:43,859] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '14.36', 'eval_runtime': '91.65', 'eval_samples_per_second': '16.38', 'eval_steps_per_second': '1.026', 'eval_ppl': '1.725e+06', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '0.7895', 'num_input_tokens_seen': 1966080, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                  
+{'loss': '2.218', 'grad_norm': '2.141', 'learning_rate': '0.0001737', 'ppl': '9.192', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7154', 'tokens/total': 2097152, 'tokens/trainable': 904738, 'epoch': '0.8421', 'num_input_tokens_seen': 2097152, 'train_runtime': '386.1', 'train_tokens_per_second': '5432'}                                                                                                                                        
+{'loss': '2.297', 'grad_norm': '1.906', 'learning_rate': '0.0001697', 'ppl': '9.946', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8495', 'tokens/total': 2228224, 'tokens/trainable': 965190, 'epoch': '0.8947', 'num_input_tokens_seen': 2228224, 'train_runtime': '387', 'train_tokens_per_second': '5758'}
+{'loss': '2.093', 'grad_norm': '1.562', 'learning_rate': '0.0001655', 'ppl': '8.108', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7590', 'tokens/total': 2359296, 'tokens/trainable': 1019172, 'epoch': '0.9474', 'num_input_tokens_seen': 2359296, 'train_runtime': '387.9', 'train_tokens_per_second': '6083'}
+{'loss': '2.185', 'grad_norm': '1.922', 'learning_rate': '0.0001611', 'ppl': '8.893', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7785', 'tokens/total': 2490368, 'tokens/trainable': 1074813, 'epoch': '1', 'num_input_tokens_seen': 2490368, 'train_runtime': '388.8', 'train_tokens_per_second': '6405'}
+{'loss': '2.027', 'grad_norm': '2.016', 'learning_rate': '0.0001564', 'ppl': '7.593', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7939', 'tokens/total': 2621440, 'tokens/trainable': 1131471, 'epoch': '1.053', 'num_input_tokens_seen': 2621440, 'train_runtime': '390', 'train_tokens_per_second': '6721'}
+ 35%|██████████████████████████████████████████████████████████████████████████████████                                                                                                                                                        | 20/57 [06:30<05:31,  8.95s/it][2026-03-06 10:44:20,420] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '13.63', 'eval_runtime': '91.33', 'eval_samples_per_second': '16.43', 'eval_steps_per_second': '1.029', 'eval_ppl': '8.326e+05', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '1.053', 'num_input_tokens_seen': 2621440, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                   
+{'loss': '1.96', 'grad_norm': '1.711', 'learning_rate': '0.0001516', 'ppl': '7.101', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7555', 'tokens/total': 2752512, 'tokens/trainable': 1187674, 'epoch': '1.105', 'num_input_tokens_seen': 2752512, 'train_runtime': '482.3', 'train_tokens_per_second': '5707'}                                                                                                                                         
+{'loss': '1.988', 'grad_norm': '2.312', 'learning_rate': '0.0001467', 'ppl': '7.304', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7865', 'tokens/total': 2883584, 'tokens/trainable': 1243629, 'epoch': '1.158', 'num_input_tokens_seen': 2883584, 'train_runtime': '483.2', 'train_tokens_per_second': '5968'}
+{'loss': '1.865', 'grad_norm': '2.078', 'learning_rate': '0.0001415', 'ppl': '6.455', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7494', 'tokens/total': 3014656, 'tokens/trainable': 1297160, 'epoch': '1.211', 'num_input_tokens_seen': 3014656, 'train_runtime': '484.1', 'train_tokens_per_second': '6227'}
+{'loss': '1.976', 'grad_norm': '1.875', 'learning_rate': '0.0001363', 'ppl': '7.212', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8277', 'tokens/total': 3145728, 'tokens/trainable': 1356098, 'epoch': '1.263', 'num_input_tokens_seen': 3145728, 'train_runtime': '485', 'train_tokens_per_second': '6486'}
+{'loss': '1.722', 'grad_norm': '2.25', 'learning_rate': '0.0001309', 'ppl': '5.598', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '5587', 'tokens/total': 3276800, 'tokens/trainable': 1409326, 'epoch': '1.316', 'num_input_tokens_seen': 3276800, 'train_runtime': '486.2', 'train_tokens_per_second': '6740'}
+ 44%|██████████████████████████████████████████████████████████████████████████████████████████████████████▋                                                                                                                                   | 25/57 [08:06<04:45,  8.93s/it][2026-03-06 10:45:56,601] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '13.14', 'eval_runtime': '91.94', 'eval_samples_per_second': '16.33', 'eval_steps_per_second': '1.022', 'eval_ppl': '5.112e+05', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '1.316', 'num_input_tokens_seen': 3276800, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                   
+{'loss': '1.576', 'grad_norm': '4.531', 'learning_rate': '0.0001254', 'ppl': '4.835', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7741', 'tokens/total': 3407872, 'tokens/trainable': 1467129, 'epoch': '1.368', 'num_input_tokens_seen': 3407872, 'train_runtime': '579.1', 'train_tokens_per_second': '5885'}                                                                                                                                        
+{'loss': '1.389', 'grad_norm': '2.453', 'learning_rate': '0.0001199', 'ppl': '4.009', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8006', 'tokens/total': 3538944, 'tokens/trainable': 1524036, 'epoch': '1.421', 'num_input_tokens_seen': 3538944, 'train_runtime': '580', 'train_tokens_per_second': '6102'}
+{'loss': '1.849', 'grad_norm': '1.789', 'learning_rate': '0.0001142', 'ppl': '6.351', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8851', 'tokens/total': 3670016, 'tokens/trainable': 1586763, 'epoch': '1.474', 'num_input_tokens_seen': 3670016, 'train_runtime': '580.9', 'train_tokens_per_second': '6318'}
+{'loss': '1.459', 'grad_norm': '1.727', 'learning_rate': '0.0001086', 'ppl': '4.303', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7840', 'tokens/total': 3801088, 'tokens/trainable': 1642584, 'epoch': '1.526', 'num_input_tokens_seen': 3801088, 'train_runtime': '581.8', 'train_tokens_per_second': '6533'}
+{'loss': '1.429', 'grad_norm': '1.688', 'learning_rate': '0.0001029', 'ppl': '4.175', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7778', 'tokens/total': 3932160, 'tokens/trainable': 1697820, 'epoch': '1.579', 'num_input_tokens_seen': 3932160, 'train_runtime': '582.7', 'train_tokens_per_second': '6748'}
+ 53%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏                                                                                                              | 30/57 [09:42<03:59,  8.87s/it][2026-03-06 10:47:33,088] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '14.03', 'eval_runtime': '92.05', 'eval_samples_per_second': '16.31', 'eval_steps_per_second': '1.021', 'eval_ppl': '1.238e+06', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '1.579', 'num_input_tokens_seen': 3932160, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                   
+{'loss': '1.247', 'grad_norm': '1.945', 'learning_rate': '9.714e-05', 'ppl': '3.481', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7216', 'tokens/total': 4063232, 'tokens/trainable': 1751169, 'epoch': '1.632', 'num_input_tokens_seen': 4063232, 'train_runtime': '675.7', 'train_tokens_per_second': '6014'}                                                                                                                                        
+{'loss': '1.35', 'grad_norm': '1.773', 'learning_rate': '9.144e-05', 'ppl': '3.856', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7841', 'tokens/total': 4194304, 'tokens/trainable': 1807053, 'epoch': '1.684', 'num_input_tokens_seen': 4194304, 'train_runtime': '676.6', 'train_tokens_per_second': '6199'}
+{'loss': '1.477', 'grad_norm': '2.828', 'learning_rate': '8.577e-05', 'ppl': '4.381', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '9166', 'tokens/total': 4325376, 'tokens/trainable': 1872412, 'epoch': '1.737', 'num_input_tokens_seen': 4325376, 'train_runtime': '677.5', 'train_tokens_per_second': '6385'}
+{'loss': '1.345', 'grad_norm': '1.906', 'learning_rate': '8.014e-05', 'ppl': '3.839', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7601', 'tokens/total': 4456448, 'tokens/trainable': 1926457, 'epoch': '1.789', 'num_input_tokens_seen': 4456448, 'train_runtime': '678.4', 'train_tokens_per_second': '6569'}
+{'loss': '1.257', 'grad_norm': '1.789', 'learning_rate': '7.458e-05', 'ppl': '3.513', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7455', 'tokens/total': 4587520, 'tokens/trainable': 1979551, 'epoch': '1.842', 'num_input_tokens_seen': 4587520, 'train_runtime': '679.3', 'train_tokens_per_second': '6754'}
+ 61%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                                                                          | 35/57 [11:19<03:15,  8.87s/it][2026-03-06 10:49:09,676] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '14.33', 'eval_runtime': '92.52', 'eval_samples_per_second': '16.22', 'eval_steps_per_second': '1.016', 'eval_ppl': '1.673e+06', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '1.842', 'num_input_tokens_seen': 4587520, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                   
+{'loss': '1.356', 'grad_norm': '1.586', 'learning_rate': '6.91e-05', 'ppl': '3.88', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8103', 'tokens/total': 4718592, 'tokens/trainable': 2040003, 'epoch': '1.895', 'num_input_tokens_seen': 4718592, 'train_runtime': '772.8', 'train_tokens_per_second': '6106'}                                                                                                                                          
+{'loss': '1.067', 'grad_norm': '1.562', 'learning_rate': '6.372e-05', 'ppl': '2.907', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7566', 'tokens/total': 4849664, 'tokens/trainable': 2093985, 'epoch': '1.947', 'num_input_tokens_seen': 4849664, 'train_runtime': '773.7', 'train_tokens_per_second': '6268'}
+{'loss': '1.285', 'grad_norm': '2.125', 'learning_rate': '5.846e-05', 'ppl': '3.613', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7741', 'tokens/total': 4980736, 'tokens/trainable': 2149626, 'epoch': '2', 'num_input_tokens_seen': 4980736, 'train_runtime': '774.7', 'train_tokens_per_second': '6429'}
+{'loss': '1.226', 'grad_norm': '1.414', 'learning_rate': '5.333e-05', 'ppl': '3.407', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7884', 'tokens/total': 5111808, 'tokens/trainable': 2206284, 'epoch': '2.053', 'num_input_tokens_seen': 5111808, 'train_runtime': '775.9', 'train_tokens_per_second': '6588'}
+{'loss': '1.112', 'grad_norm': '1.508', 'learning_rate': '4.836e-05', 'ppl': '3.039', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7896', 'tokens/total': 5242880, 'tokens/trainable': 2262487, 'epoch': '2.105', 'num_input_tokens_seen': 5242880, 'train_runtime': '776.8', 'train_tokens_per_second': '6750'}
+ 70%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏                                                                     | 40/57 [12:56<02:32,  8.99s/it][2026-03-06 10:50:47,178] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '14.01', 'eval_runtime': '92.33', 'eval_samples_per_second': '16.26', 'eval_steps_per_second': '1.018', 'eval_ppl': '1.217e+06', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '2.105', 'num_input_tokens_seen': 5242880, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                   
+{'loss': '1.219', 'grad_norm': '1.688', 'learning_rate': '4.356e-05', 'ppl': '3.385', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7550', 'tokens/total': 5373952, 'tokens/trainable': 2318442, 'epoch': '2.158', 'num_input_tokens_seen': 5373952, 'train_runtime': '870.1', 'train_tokens_per_second': '6177'}                                                                                                                                        
+{'loss': '1.106', 'grad_norm': '1.445', 'learning_rate': '3.894e-05', 'ppl': '3.022', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7509', 'tokens/total': 5505024, 'tokens/trainable': 2371973, 'epoch': '2.211', 'num_input_tokens_seen': 5505024, 'train_runtime': '871', 'train_tokens_per_second': '6321'}
+{'loss': '1.232', 'grad_norm': '1.531', 'learning_rate': '3.451e-05', 'ppl': '3.429', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8247', 'tokens/total': 5636096, 'tokens/trainable': 2430911, 'epoch': '2.263', 'num_input_tokens_seen': 5636096, 'train_runtime': '871.9', 'train_tokens_per_second': '6464'}
+{'loss': '1.091', 'grad_norm': '1.461', 'learning_rate': '3.031e-05', 'ppl': '2.979', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7483', 'tokens/total': 5767168, 'tokens/trainable': 2484139, 'epoch': '2.316', 'num_input_tokens_seen': 5767168, 'train_runtime': '872.8', 'train_tokens_per_second': '6608'}
+{'loss': '1.215', 'grad_norm': '1.664', 'learning_rate': '2.633e-05', 'ppl': '3.372', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8155', 'tokens/total': 5898240, 'tokens/trainable': 2541942, 'epoch': '2.368', 'num_input_tokens_seen': 5898240, 'train_runtime': '873.7', 'train_tokens_per_second': '6751'}
+ 79%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                                 | 45/57 [14:33<01:46,  8.91s/it][2026-03-06 10:52:24,061] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '14.03', 'eval_runtime': '91.96', 'eval_samples_per_second': '16.32', 'eval_steps_per_second': '1.022', 'eval_ppl': '1.245e+06', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '2.368', 'num_input_tokens_seen': 5898240, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                   
+{'loss': '0.9176', 'grad_norm': '1.539', 'learning_rate': '2.259e-05', 'ppl': '2.503', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7677', 'tokens/total': 6029312, 'tokens/trainable': 2598849, 'epoch': '2.421', 'num_input_tokens_seen': 6029312, 'train_runtime': '966.6', 'train_tokens_per_second': '6238'}                                                                                                                                       
+{'loss': '1.194', 'grad_norm': '1.477', 'learning_rate': '1.91e-05', 'ppl': '3.3', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8860', 'tokens/total': 6160384, 'tokens/trainable': 2661576, 'epoch': '2.474', 'num_input_tokens_seen': 6160384, 'train_runtime': '967.5', 'train_tokens_per_second': '6368'}
+{'loss': '0.858', 'grad_norm': '1.461', 'learning_rate': '1.587e-05', 'ppl': '2.358', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7823', 'tokens/total': 6291456, 'tokens/trainable': 2717397, 'epoch': '2.526', 'num_input_tokens_seen': 6291456, 'train_runtime': '968.4', 'train_tokens_per_second': '6497'}
+{'loss': '0.8475', 'grad_norm': '1.586', 'learning_rate': '1.293e-05', 'ppl': '2.334', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7778', 'tokens/total': 6422528, 'tokens/trainable': 2772633, 'epoch': '2.579', 'num_input_tokens_seen': 6422528, 'train_runtime': '969.3', 'train_tokens_per_second': '6626'}
+{'loss': '0.7598', 'grad_norm': '1.742', 'learning_rate': '1.026e-05', 'ppl': '2.138', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '5452', 'tokens/total': 6553600, 'tokens/trainable': 2825982, 'epoch': '2.632', 'num_input_tokens_seen': 6553600, 'train_runtime': '970.5', 'train_tokens_per_second': '6753'}
+ 88%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                            | 50/57 [16:10<01:02,  8.97s/it][2026-03-06 10:54:00,886] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '14.15', 'eval_runtime': '91.18', 'eval_samples_per_second': '16.46', 'eval_steps_per_second': '1.031', 'eval_ppl': '1.392e+06', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '2.632', 'num_input_tokens_seen': 6553600, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                   
+{'loss': '0.8311', 'grad_norm': '1.672', 'learning_rate': '7.888e-06', 'ppl': '2.296', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '5568', 'tokens/total': 6684672, 'tokens/trainable': 2881866, 'epoch': '2.684', 'num_input_tokens_seen': 6684672, 'train_runtime': '1063', 'train_tokens_per_second': '6289'}                                                                                                                                        
+{'loss': '1.1', 'grad_norm': '1.516', 'learning_rate': '5.816e-06', 'ppl': '3.005', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7042', 'tokens/total': 6815744, 'tokens/trainable': 2947225, 'epoch': '2.737', 'num_input_tokens_seen': 6815744, 'train_runtime': '1064', 'train_tokens_per_second': '6405'}
+{'loss': '0.8799', 'grad_norm': '1.602', 'learning_rate': '4.051e-06', 'ppl': '2.411', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7611', 'tokens/total': 6946816, 'tokens/trainable': 3001270, 'epoch': '2.789', 'num_input_tokens_seen': 6946816, 'train_runtime': '1065', 'train_tokens_per_second': '6523'}
+{'loss': '0.8324', 'grad_norm': '1.562', 'learning_rate': '2.599e-06', 'ppl': '2.299', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7463', 'tokens/total': 7077888, 'tokens/trainable': 3054364, 'epoch': '2.842', 'num_input_tokens_seen': 7077888, 'train_runtime': '1066', 'train_tokens_per_second': '6640'}
+{'loss': '0.9508', 'grad_norm': '1.453', 'learning_rate': '1.465e-06', 'ppl': '2.588', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '8487', 'tokens/total': 7208960, 'tokens/trainable': 3114816, 'epoch': '2.895', 'num_input_tokens_seen': 7208960, 'train_runtime': '1067', 'train_tokens_per_second': '6758'}
+ 96%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊        | 55/57 [17:46<00:17,  8.88s/it][2026-03-06 10:55:37,204] [INFO] [axolotl.core.trainers.base] Running evaluation step...
+{'eval_loss': '14.18', 'eval_runtime': '91.86', 'eval_samples_per_second': '16.34', 'eval_steps_per_second': '1.023', 'eval_ppl': '1.44e+06', 'memory/max_active (GiB)': '47.68', 'memory/max_allocated (GiB)': '47.68', 'memory/device_reserved (GiB)': '51.59', 'epoch': '2.895', 'num_input_tokens_seen': 7208960, 'tokens/train_per_sec_per_gpu': '0'}                                                                                                                                                                                                    
+{'loss': '0.7469', 'grad_norm': '1.414', 'learning_rate': '6.518e-07', 'ppl': '2.11', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7296', 'tokens/total': 7340032, 'tokens/trainable': 3168798, 'epoch': '2.947', 'num_input_tokens_seen': 7340032, 'train_runtime': '1160', 'train_tokens_per_second': '6330'}                                                                                                                                         
+{'loss': '1.012', 'grad_norm': '1.398', 'learning_rate': '1.631e-07', 'ppl': '2.752', 'memory/max_active (GiB)': '10.7', 'memory/max_allocated (GiB)': '10.7', 'memory/device_reserved (GiB)': '11.59', 'tokens/train_per_sec_per_gpu': '7777', 'tokens/total': 7471104, 'tokens/trainable': 3224439, 'epoch': '3', 'num_input_tokens_seen': 7471104, 'train_runtime': '1161', 'train_tokens_per_second': '6437'}
+{'train_runtime': '1161', 'train_samples_per_second': '0.786', 'train_steps_per_second': '0.049', 'train_loss': '1.746', 'memory/max_active (GiB)': '7.64', 'memory/max_allocated (GiB)': '7.64', 'memory/device_reserved (GiB)': '11.59', 'epoch': '3', 'num_input_tokens_seen': 7471104, 'tokens/train_per_sec_per_gpu': '0'}
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 57/57 [19:20<00:00, 20.36s/it]
+[2026-03-06 10:57:11,030] [INFO] [axolotl.train] Training completed! Saving trained model to output.
+Writing model shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:02<00:00,  2.08s/it]
+[2026-03-06 10:57:13,135] [INFO] [axolotl.train] Model successfully saved to output
