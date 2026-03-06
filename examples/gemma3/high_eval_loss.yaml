@@ -1,5 +1,4 @@
-# PUBLIC REPRODUCE CONFIG: Flash Attention 2 Eval Packing Issue
-base_model: google/gemma-3-1b-it  # Changed to Public HuggingFace path
+base_model: google/gemma-3-1b-it
 
 # gemma3 specific ddp/memory handling
 ddp_find_unused_parameters: true
@@ -20,7 +19,6 @@ chat_template: gemma3
 eot_tokens:
   - "<end_of_turn>"
 
-# Dataset - Swapped to public HuggingFace version of Dolly
 datasets:
   - path: databricks/databricks-dolly-15k
     type: chat_template
@@ -31,13 +29,13 @@ datasets:
 sequence_len: 8192
 sample_packing: true
 eval_sample_packing: false  # Trigger: set to false while sample_packing is true
-flash_attention: true       # Requirement for the FA2 kernel issue
+flash_attention: true
 # -------------------------------
 
 use_kernels: true
 micro_batch_size: 2
 gradient_accumulation_steps: 1
-num_epochs: 1 # Set to 1 for faster reproduction
+num_epochs: 2
 optimizer: adamw_torch_fused
 learning_rate: 2e-4
 lr_scheduler: cosine
@@ -48,5 +46,5 @@ logging_steps: 1
 gradient_checkpointing: true
 
 val_set_size: 0.1
-evals_per_epoch: 5 # Frequent evals to catch the loss spike early
+evals_per_epoch: 5
 save_strategy: 'no'
